@@ -13,7 +13,7 @@ source:
 
 build:
   merge_build_host: True  # [win]
-  number: 0
+  number: 1
 
   rpaths:
     - lib/R/lib/
@@ -27,9 +27,9 @@ requirements:
     - {{ compiler('cxx') }}            # [not win]
     - {{ compiler('m2w64_cxx') }}      # [win]
     - posix                            # [win]
-    - {{posix}}filesystem        # [win]
-    - {{posix}}git
-    - {{posix}}zip               # [win]
+    - {{ posix }}filesystem        # [win]
+    - {{ posix }}git
+    - {{ posix }}zip               # [win]
 
   host:
     - r-base
@@ -38,7 +38,7 @@ requirements:
 
   run:
     - r-base
-    - {{native}}gcc-libs         # [win]
+    - {{ native }}gcc-libs         # [win]
     - r-rcpp
     - r-magrittr
 
