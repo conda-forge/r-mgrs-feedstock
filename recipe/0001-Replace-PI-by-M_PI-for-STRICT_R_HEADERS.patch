@@ -1,0 +1,60 @@
+From b23c86ff7977d0fd1f5b24c17a1bfc9125f17ad7 Mon Sep 17 00:00:00 2001
+From: Marcel Bargull <marcel.bargull@udo.edu>
+Date: Mon, 17 Oct 2022 17:59:26 +0000
+Subject: [PATCH] Replace PI by M_PI (for STRICT_R_HEADERS)
+
+---
+ src/main.cpp | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/src/main.cpp b/src/main.cpp
+index b6634b0..573d9a4 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -38,8 +38,8 @@ DataFrame mgrs_to_latlng(std::vector < std::string > MGRS, bool degrees = true,
+       lat_vec[i] = NA_REAL;
+       lng_vec[i] = NA_REAL;
+     } else {
+-      lat_vec[i] = degrees ? lat * 180.0/PI : lat;
+-      lng_vec[i] = degrees ? lng * 180.0/PI : lng;
++      lat_vec[i] = degrees ? lat * 180.0/M_PI : lat;
++      lng_vec[i] = degrees ? lng * 180.0/M_PI : lng;
+     }
+
+   }
+@@ -83,8 +83,8 @@ String latlng_to_mgrs(double latitude, double longitude,
+                       bool degrees = true, int precision = 5) {
+
+   if (degrees) {
+-    latitude *= PI / 180.0;
+-    longitude *= PI / 180.0;
++    latitude *= M_PI / 180.0;
++    longitude *= M_PI / 180.0;
+   }
+
+   char buf[80];
+@@ -319,8 +319,8 @@ NumericVector ups_to_latlng(std::string hemisphere,
+     );
+   } else {
+     coords = NumericVector::create(
+-      _["lat"] = degrees ? lat * 180.0/PI : lat,
+-      _["lng"] = degrees ? lng * 180.0/PI : lng
++      _["lat"] = degrees ? lat * 180.0/M_PI : lat,
++      _["lng"] = degrees ? lng * 180.0/M_PI : lng
+     );
+   }
+
+@@ -358,8 +358,8 @@ NumericVector utm_to_latlng(long zone, std::string hemisphere,
+     );
+   } else {
+     coords = NumericVector::create(
+-      _["lat"] = degrees ? lat * 180.0/PI : lat,
+-      _["lng"] = degrees ? lng * 180.0/PI : lng
++      _["lat"] = degrees ? lat * 180.0/M_PI : lat,
++      _["lng"] = degrees ? lng * 180.0/M_PI : lng
+     );
+   }
+
+--
+2.38.0
+

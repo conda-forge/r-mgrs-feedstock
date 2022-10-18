@@ -10,10 +10,12 @@ package:
 source:
   url: https://github.com/hrbrmstr/mgrs/archive/v{{ version }}.tar.gz
   sha256: d2fe4a4db05ac34bbf0ce945ff08a52d53d762e1d609ed174af13cb0dfd4d03a
+  patches:
+    - 0001-Replace-PI-by-M_PI-for-STRICT_R_HEADERS.patch
 
 build:
   merge_build_host: True  # [win]
-  number: 1
+  number: 2
 
   rpaths:
     - lib/R/lib/
