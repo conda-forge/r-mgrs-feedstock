@@ -1,7 +1,6 @@
 {% set version = '0.2.1' %}
 
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-mgrs
@@ -14,8 +13,7 @@ source:
     - 0001-Replace-PI-by-M_PI-for-STRICT_R_HEADERS.patch
 
 build:
-  merge_build_host: True  # [win]
-  number: 3
+  number: 4
 
   rpaths:
     - lib/R/lib/
@@ -25,10 +23,11 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}              # [not win]
+    - {{ stdlib("c") }}                # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ compiler('cxx') }}            # [not win]
     - {{ compiler('m2w64_cxx') }}      # [win]
-    - posix                            # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}git
     - {{ posix }}zip               # [win]
@@ -40,7 +39,6 @@ requirements:
 
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-rcpp
     - r-magrittr
 
